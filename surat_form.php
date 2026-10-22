@@ -44,7 +44,7 @@ if ($id > 0) {
 }
 
 $old = $s ?? [
-    'jenis' => JENIS_SURAT[0],
+    'jenis' => '',
     'judul' => '',
     'deskripsi' => '',
     'tanggal' => date('Y-m-d'),
@@ -56,11 +56,13 @@ $old = $s ?? [
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     csrf_check();
 
-    $old['jenis'] = in_array(
-        $_POST['jenis'] ?? '',
-        JENIS_SURAT,
-        true
-    ) ? $_POST['jenis'] : JENIS_SURAT[0];
+    $old['jenis'] = trim($_POST['jenis'] ?? '');
+
+    if ($old['jenis'] === '') {
+        $err['jenis'] = 'Jenis surat wajib diisi.';
+    } elseif (mb_strlen($old['jenis']) > 100) {
+        $err['jenis'] = 'Jenis surat maksimal 100 karakter.';
+    }
 
     $old['judul'] = trim($_POST['judul'] ?? '');
     $old['deskripsi'] = trim($_POST['deskripsi'] ?? '');
@@ -255,19 +257,27 @@ app_start(
         <?= csrf_field() ?>
 
         <div class="row2">
-            <div class="field">
-                <label for="jenis">Jenis surat</label>
-                <div class="input">
-                    <select id="jenis" name="jenis">
-                        <?php foreach (JENIS_SURAT as $j): ?>
-                            <option value="<?= e($j) ?>"
-                                <?= $old['jenis'] === $j ? 'selected' : '' ?>>
-                                <?= e($j) ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+            
+        <div class="field">
+            <label for="jenis">
+                Jenis surat <span class="req">*</span>
+            </label>
+
+            <div class="input <?= isset($err['jenis']) ? 'has-err' : '' ?>">
+                <input
+                    type="text"
+                    id="jenis"
+                    name="jenis"
+                    value="<?= e($old['jenis']) ?>"
+                    placeholder="Contoh: Surat Keterangan Domisili"
+                    maxlength="100"
+                    required
+                >
             </div>
+
+            <?= ferr($err, 'jenis') ?>
+        </div>
+
 
             <div class="field">
                 <label for="urgensi">Tingkat urgensi</label>
