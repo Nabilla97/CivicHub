@@ -1,0 +1,10 @@
+
+# Rahasia dan konfigurasi lokal
+.env
+.env.*
+!.env.example
+config/database.php
+
+# File sistem
+.DS_Store
+Thumbs.db
