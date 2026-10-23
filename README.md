@@ -1,50 +1,50 @@
-# CivicHub – Versi Desktop (PHP)
+# CivicHub — Sistem Informasi Pelayanan Warga
 
-Website desktop CivicHub yang mengikuti desain mobile. Tanpa database & tanpa composer:
-data demo disimpan di `$_SESSION`.
+CivicHub adalah aplikasi berbasis web yang membantu warga mengajukan surat secara online serta memudahkan admin mengelola pengajuan surat, berita, dan informasi pelayanan warga.
 
-## Menjalankan
-Butuh PHP 7.4+ (disarankan 8.x).
+## Fitur Utama
 
-    cd civichub
-    php -S localhost:8000
+### Warga
+- Registrasi dan login akun.
+- Melihat ringkasan pengajuan surat pada dashboard.
+- Mengajukan dan melihat detail surat.
+- Memantau status pengajuan surat.
+- Membaca berita dan pengumuman terbaru.
+- Mengelola profil dan pengaturan akun.
+- Mengubah bahasa dan tema tampilan.
 
-Buka http://localhost:8000 (landing page).
+### Administrator
+- Melihat ringkasan dan daftar surat masuk.
+- Memantau status pengajuan surat warga.
+- Mengelola berita dan pengumuman.
+- Melihat notifikasi pengajuan surat baru.
 
-## Akun demo
-| Peran         | Email                 | Sandi      |
-|---------------|-----------------------|------------|
-| Warga         | ratualiyah@gmail.com  | 12345678   |
-| Administrator | admin@civichub.id     | admin123   |
+## Teknologi yang Digunakan
+- PHP
+- MySQL
+- HTML
+- CSS
+- JavaScript
+- SweetAlert2
+- Laragon sebagai lingkungan pengembangan lokal
 
-## Peta halaman (mobile -> desktop)
-| Desain mobile                       | File                                   |
-|-------------------------------------|----------------------------------------|
-| Splash / Selamat Datang             | `index.php` (landing)                  |
-| Log in                              | `login.php`                            |
-| Sign up (2 langkah + OTP)           | `daftar.php`                           |
-| Dashboard                           | `dashboard.php`, `cari.php`            |
-| Letter: riwayat, detail pengajuan   | `surat.php`, `surat_detail.php`        |
-| (Warga) tambah/ubah/hapus surat     | `surat_form.php`, `surat_hapus.php`    |
-| News: daftar & detail               | `berita.php`, `berita_detail.php`      |
-| (Admin) tambah berita               | `berita_form.php`                      |
-| Profile: data diri, edit, verifikasi, notifikasi, bahasa, tema | `profil.php?tab=...` |
+## Persyaratan
+- PHP 7.4 atau lebih baru.
+- MySQL atau MariaDB.
+- Laragon atau lingkungan server lokal sejenis.
 
-## Hak akses (sesuai tabel layanan di landing)
-- Warga: tambah, lihat, ubah, hapus surat milik sendiri.
-- Administrator: lihat semua surat masuk, tambah berita.
+## Cara Menjalankan
+1. Clone repository CivicHub ke folder web server lokal.
+2. Jalankan Apache dan MySQL melalui Laragon.
+3. Buat database bernama `db_civichub`.
+4. Impor struktur database melalui file SQL yang tersedia jika diperlukan.
+5. Sesuaikan konfigurasi koneksi database pada `config/database.php`.
+6. Buka aplikasi melalui browser menggunakan URL lokal Laragon, misalnya `http://localhost/CivicHub-2/`.
 
-## Struktur
-    includes/bootstrap.php   session, helper, ikon, data demo, fungsi data
-    includes/layout.php      sidebar + banner (app_start/app_end), layout auth
-    assets/style.css         CSS landing page
-    assets/app.css           CSS aplikasi (termasuk tema gelap)
-    assets/app.js            toggle sandi, OTP, bookmark, konfirmasi hapus
+## Database
+CivicHub menggunakan MySQL untuk menyimpan data pengguna, pengajuan surat, berita, dan data terkait lainnya.
 
-## Menuju produksi
-- Ganti fungsi di bagian "DATA" pada `includes/bootstrap.php` dengan query PDO/MySQL
-  (users, surat, surat_timeline, berita, notifikasi). Nama fungsinya sengaja dibuat
-  terpusat: `surat_visible`, `surat_find`, `surat_save`, `surat_delete`, `berita_all`, `berita_find`, dll.
-- Kirim OTP lewat email/SMS (sekarang kode ditampilkan di layar sebagai mode demo).
-- Tombol login Apple/Google/Facebook masih nonaktif.
-- Tambahkan fitur admin untuk mengubah status surat (Diajukan -> Diverifikasi -> Diproses -> Selesai).
+**Catatan:** Sesuaikan struktur database dengan file SQL yang tersedia. Jangan mengunggah password asli, data pribadi warga, atau informasi sensitif ke repository publik.
+
+## Repository
+Source code CivicHub tersedia di GitHub pada repository ini.
