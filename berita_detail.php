@@ -121,7 +121,7 @@ app_start(
     </div>
 
     <?php foreach ($b['isi'] as $p): ?>
-        <p class="t"><?= e($p) ?></p>
+        <p class="t"><?= $p ?></p>
     <?php endforeach; ?>
 
 </article>
