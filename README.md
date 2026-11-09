@@ -53,3 +53,7 @@ Source code CivicHub tersedia di GitHub pada repository ini.
 
 CivicHub is a web-based citizen administration service
 application developed using PHP and MySQL.git add .
+
+## About This Project
+
+CivicHub is a web-based platform developed to provide useful information and services for the community. This project is built as part of a collaborative learning experience using Git and GitHub.
