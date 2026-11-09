@@ -48,3 +48,8 @@ CivicHub menggunakan MySQL untuk menyimpan data pengguna, pengajuan surat, berit
 
 ## Repository
 Source code CivicHub tersedia di GitHub pada repository ini.
+
+## About CivicHub
+
+CivicHub is a web-based citizen administration service
+application developed using PHP and MySQL.git add .
