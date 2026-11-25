@@ -8,3 +8,4 @@ config/database.php
 # File sistem
 .DS_Store
 Thumbs.db
+civichub.sql
