@@ -1,4 +1,4 @@
-
+name: civichub-2
 services:
   web:
     build: .
