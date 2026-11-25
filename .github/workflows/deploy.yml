@@ -1,0 +1,18 @@
+
+name: CivicHub CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy CivicHub
+        run: docker compose up -d --build
