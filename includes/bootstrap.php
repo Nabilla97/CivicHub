@@ -4,7 +4,9 @@
  * Data disimpan di $_SESSION agar bisa langsung dijalankan tanpa database.
  * Untuk produksi, ganti fungsi di bagian "DATA" dengan query PDO/MySQL.
  */
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 function e($s): string { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 
 function redirect(string $to) { header('Location: ' . $to); exit; }
