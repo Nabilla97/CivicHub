@@ -7,10 +7,10 @@ services:
     container_name: civichub-php
     restart: unless-stopped
     environment:
-      DB_HOST: db
-      DB_NAME: db_civichub
-      DB_USER: root
-      DB_PASS: rootcivichub
+      DB_HOST: ${DB_HOST:-db}
+      DB_NAME: ${DB_NAME:-db_civichub}
+      DB_USER: ${DB_USER:-root}
+      DB_PASS: ${DB_PASS:?Set DB_PASS in .env}
     volumes:
       - .:/var/www/html
     depends_on:
@@ -34,15 +34,15 @@ services:
     container_name: civichub-db
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: rootcivichub
-      MYSQL_DATABASE: db_civichub
+      MYSQL_ROOT_PASSWORD: ${DB_PASS:?Set DB_PASS in .env}
+      MYSQL_DATABASE: ${DB_NAME:-db_civichub}
     ports:
       - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
       - ./civichub-schema.sql:/docker-entrypoint-initdb.d/civichub-schema.sql:ro
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-prootcivichub"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p\"$${MYSQL_ROOT_PASSWORD}\""]
       interval: 5s
       timeout: 5s
       retries: 20
