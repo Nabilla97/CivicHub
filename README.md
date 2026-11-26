@@ -48,3 +48,17 @@ CivicHub menggunakan MySQL untuk menyimpan data pengguna, pengajuan surat, berit
 
 ## Repository
 Source code CivicHub tersedia di GitHub pada repository ini.
+
+## Docker Development
+
+CivicHub uses Docker Compose to manage its application environment.
+
+The development environment consists of:
+- PHP and Apache for the web application.
+- MySQL 8.0 for database management.
+- phpMyAdmin for database administration.
+
+To start the application:
+
+```bash
+docker compose up -d --build
