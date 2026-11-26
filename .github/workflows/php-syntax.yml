@@ -1,0 +1,32 @@
+
+name: PHP Syntax Validation
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  php-lint:
+    name: PHP 8.2 Syntax Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup PHP 8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Validate PHP syntax
+        run: |
+          find . -type f -name "*.php" \
+            -not -path "./vendor/*" \
+            -not -path "./.git/*" \
+            -print0 | xargs -0 -r -n1 php -l
