@@ -28,7 +28,7 @@ jobs:
         run: docker compose build web
 
       - name: Test Nginx configuration
-        run: docker compose run --rm --no-deps nginx nginx -t
+        run: docker compose run --rm nginx nginx -t
 
   deploy:
     name: Deploy CivicHub
