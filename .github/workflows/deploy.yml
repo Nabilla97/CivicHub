@@ -17,6 +17,12 @@ jobs:
     name: Pull Request & Docker Validation
     runs-on: ubuntu-latest
 
+    env:
+      DB_HOST: db
+      DB_NAME: db_civichub
+      DB_USER: root
+      DB_PASS: ci-validation-only-password
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
