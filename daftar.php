@@ -1,11 +1,10 @@
-
 <?php
 require __DIR__ . '/includes/layout.php';
 guest_only();
 
 // Koneksi database MySQLi CivicHub.
 if (!isset($conn) || !($conn instanceof mysqli)) {
-    $conn = require $_SERVER['DOCUMENT_ROOT'] . '/CivicHub-2/config/database.php';
+    $conn = require $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 }
 
 $step = (int) ($_GET['step'] ?? 1);
